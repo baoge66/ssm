@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!--导入属性配置 错误信息：resource db.properties does not exist-->
+	<!--<properties resource="db.properties"></properties>-->
+	<!--驱动位置-->
+	<classPathEntry location="D:\jar\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+	<!-- 指定运行环境是mybatis3的版本 -->
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true" />
+			 <!-- 是否生成注释代时间戳 -->
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		
+		<!-- jdbc 连接信息 -->
+		<jdbcConnection
+				driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"
+				userId="root" password="root">
+		</jdbcConnection>
+		
+          <!-- targetPackage指定实体模型在生成在哪个包 ,targetProject指定项目的src,-->        
+		<javaModelGenerator targetPackage="com.baoge.business.entity"
+			targetProject="src/test/java">
+			<!-- 去除字段前后空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 指定dao类生成在哪个包 -->
+		<sqlMapGenerator targetPackage="com.baoge.business.mapper"
+			targetProject="src/test/java" />
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.baoge.business.dao" targetProject="src/test/java" />
+
+		<table tableName="Account" domainObjectName="Account" />
+	
+	</context>
+</generatorConfiguration>
